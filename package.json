@@ -1,0 +1,24 @@
+{
+  "name": "titac-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "build": "rimraf ./build && tsc",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start": "npm run build && node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.0.1",
+    "nodemon": "^2.0.10",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "socket.io": "^4.1.2"
+  }
+}
