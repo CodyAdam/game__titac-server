@@ -1,14 +1,14 @@
-import { createServer } from "http";
-import { ServerOptions } from 'https';
+import { createServer } from "https";
 import { Server, Socket } from "socket.io";
+import fs from 'fs'
+import path from 'path'
 
-const httpServer = createServer();
+const httpServer = createServer({
+  key: fs.readFileSync(path.resolve(__dirname, '../tmp/key.pem')),
+  cert: fs.readFileSync(path.resolve(__dirname, '../tmp/certificate.pem'))
+});
 const io = new Server(httpServer, { cors: { origin: "*" } });
 
-function logCount() {
-  console.log(`Sockets connected : ${io.sockets.sockets.size}`);
-
-}
 
 io.on("connection", (socket: Socket) => {
   console.log("  +  New connection");
@@ -27,6 +27,10 @@ io.on("connection", (socket: Socket) => {
   })
 });
 
+console.log('Server started');
+function logCount() {
+  console.log(`Sockets connected : ${io.sockets.sockets.size}`);
+}
 
 
-httpServer.listen(8080);
+httpServer.listen(2222);
