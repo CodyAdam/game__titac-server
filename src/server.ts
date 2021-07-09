@@ -1,12 +1,9 @@
-import { createServer } from "https";
+import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 import fs from 'fs'
 import path from 'path'
 
-const httpServer = createServer({
-  key: fs.readFileSync(path.resolve(__dirname, '../tmp/key.pem')),
-  cert: fs.readFileSync(path.resolve(__dirname, '../tmp/certificate.pem'))
-});
+const httpServer = createServer();
 const io = new Server(httpServer, { cors: { origin: "*" } });
 
 
